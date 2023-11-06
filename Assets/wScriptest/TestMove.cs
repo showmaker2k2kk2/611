@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TestMove : MonoBehaviour
 {
-
+    public Transform hand;
     NavMeshAgent agent;
     public float speed = 5;
 
@@ -33,8 +33,17 @@ public class TestMove : MonoBehaviour
         {
             agent.Move(dirMove * speed * Time.deltaTime);
         }
-    
-  
+    public void Add(GameObject Weapon)
+    {
+        Weapon.SetActive(true);
+        Weapon.transform.SetParent(hand);
+        Weapon.transform.localPosition = Vector3.zero;
+
+
+
+    }
+
+
 
 
 }

@@ -9,13 +9,13 @@ public class WeaponScripts : MonoBehaviour
 
     void Start()
     {
-        
+        AnimateWeaponOnGround();
     }
 
     // Update is called once per frame
     void Update()
     {
-        AnimateWeaponOnGround();
+        //AnimateWeaponOnGround();
     }
     public void AnimateWeaponOnGround()
     {

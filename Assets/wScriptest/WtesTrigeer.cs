@@ -19,7 +19,8 @@ public class WtesTrigeer : MonoBehaviour
     {
         if(other.GetComponent<TestMove>())
         {
-            other.GetComponent<TestMove>.Add(this.gameObject);
+            other.GetComponent<TestMove>().Add(this.gameObject);
         }    
+            Debug.Log(other.name);
     }
 }

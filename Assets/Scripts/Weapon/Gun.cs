@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+
     public WeaponState Currentweapon=new WeaponState();
     public List<WeaponState> vu_khi_tren_tay;// chứa thông tin vũ khí mà người chơi cầm trên tay
     public Transform tay;// khi nhặt vũ khí thì dặt tay người chơi làm cha  của vũ khí, đặt vị trí của vũ khí là tay người chơi
@@ -61,6 +62,10 @@ public class Gun : MonoBehaviour
         //    dangnapdan = true;
         //    StartCoroutine(napdan());
         //}    
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            changeWeapon();
+        }
     }
     void shoot()
     {
@@ -77,27 +82,55 @@ public class Gun : MonoBehaviour
     }
     public void AddWeapon(GameObject weaponpickup)
     {   
-        //if(vu_khi_tren_tay.Count<2)
-        //{
-            weaponpickup.SetActive(true);
+        if(vu_khi_tren_tay.Count<2)
+        {
+            weaponpickup.SetActive(false);
             vu_khi_tren_tay.Add(weaponpickup.GetComponent<WeaponScripts>().states);
-            weaponpickup.transform.localScale = new Vector3(1, 1, 1);
-            weaponpickup.transform.SetParent(tay);
-            weaponpickup.transform.position = new Vector3(0, 0, 0);
-           weaponpickup.transform.localRotation = Quaternion.Euler(0, 90, 90);
-        //} 
-        //if(Currentweapon==null)
-        //{
-        //    Currentweapon=weaponpickup.GetComponent<WeaponScripts>().states;
-        //    weaponpickup.SetActive(true);
-        //}    
+            //weaponpickup.transform.SetParent(tay);
+            Instantiate(weaponpickup, tay.transform.position, tay.rotation);
+            //weaponpickup.transform.localScale = Vector3.one;
+            //weaponpickup.transform.localPosition = Vector3.zero;
+            //weaponpickup.transform.localRotation = Quaternion.Euler(0, 90, 90);
+            weaponpickup.SetActive(true);
+        }
+        if (Currentweapon == null)
+        {
+            Currentweapon = weaponpickup.GetComponent<WeaponScripts>().states;
+            
+        }
 
-    }   
+        
+    }       
     IEnumerator napdan()
     {
         yield return new  WaitForSeconds(1);
         dangnapdan = false;
-        so_luong_dan_da_ban= 0;
+        so_luong_dan_da_ban= 0;    
+    }
+   public  void changeWeapon()
+    {
+        if(vu_khi_tren_tay.Count>1) 
+        {
+            Currentweapon.Weaponprefabs.SetActive(false);
+            foreach(WeaponState weapon in vu_khi_tren_tay)
+            { 
+                if (Currentweapon != weapon)
+                {
+                    Currentweapon= weapon;
+                    weapon.Weaponprefabs.SetActive(true);
+                    break;
+                }
+              
+                   
+            }
+            // reset dan;
 
-    }    
+        }
+        else if(vu_khi_tren_tay.Count==1)
+        {
+            Currentweapon = vu_khi_tren_tay[0];
+            Currentweapon.Weaponprefabs.SetActive(true);
+        }
+       
+    }
 }

@@ -34,13 +34,15 @@ public class Player : Emity
 
     void Update()
     {
-        Vector3 dir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        Vector3 dir = new Vector3(horizontal, 0, vertical);
         LookMouse();
         if (dir != Vector3.zero)
         {
             anim.SetBool("Run", true);
             //animator.SetMovement(characterAnimator.Movementtype.Run);
-
+            //Debug.LogError("AAA");
             MoveInput(dir);
         }
         else
