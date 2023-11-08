@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class WeaponState// tạo ra 1 biến và cung cấp các biến này cho các loại vũ khí mà cần dùn
+public class WeaponState:Ishot// tạo ra 1 biến và cung cấp các biến này cho các loại vũ khí mà cần dùn
 {
     public string Name;
     public int Dame;
@@ -14,6 +14,12 @@ public class WeaponState// tạo ra 1 biến và cung cấp các biến này cho
     public GameObject projectile;
     public Transform Shootpoint;
     public GameObject Weaponprefabs;
+
+    public void shoot(int Dame)
+    {
+       
+    }
+
     //public Sprite ImageWeapon;
     //public AudioClip WeaponShotsound;
     //public AudioClip WeaponpickUpSound;

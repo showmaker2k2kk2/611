@@ -7,12 +7,13 @@ public class WeaponScripts : MonoBehaviour
    public WeaponState states;// mỗi khẩu súng sẽ có 1 trang thái riêng;
 
 
+
     void Start()
     {
         AnimateWeaponOnGround();
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
         //AnimateWeaponOnGround();
@@ -34,4 +35,5 @@ public class WeaponScripts : MonoBehaviour
         }
         
     }
+
 }

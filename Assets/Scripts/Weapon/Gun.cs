@@ -5,7 +5,8 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 
-    public WeaponState Currentweapon=new WeaponState();
+    private WeaponState Currentweapon=new WeaponState();
+
     public List<WeaponState> vu_khi_tren_tay;// chứa thông tin vũ khí mà người chơi cầm trên tay
     public Transform tay;// khi nhặt vũ khí thì dặt tay người chơi làm cha  của vũ khí, đặt vị trí của vũ khí là tay người chơi
     
@@ -26,6 +27,7 @@ public class Gun : MonoBehaviour
     Rigidbody rb;
     Animator anim;
 
+
     public float speed;
 
 
@@ -45,6 +47,19 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
+        if (Currentweapon.shootMode == WeaponState.ShootMode.Hold)
+        {
+
+
+
+        }
+        else if (Currentweapon.shootMode == WeaponState.ShootMode.Click)
+        {
+
+
+        }
+
+
         if (Input.GetMouseButtonDown(0))
         {
             shoot();
@@ -70,13 +85,11 @@ public class Gun : MonoBehaviour
     void shoot()
     {
         so_luong_dan_da_ban += 1;
-
-        GameObject bullet = Instantiate(aduu, pointshoot.transform.position, transform.rotation);
+        GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
         Bullet bu = bullet.GetComponent<Bullet>();
         fx.Play();
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed);
-
         //bu.Adfore();
         Destroy(bullet, 4);
     }
@@ -86,16 +99,15 @@ public class Gun : MonoBehaviour
         {
             weaponpickup.SetActive(false);
             vu_khi_tren_tay.Add(weaponpickup.GetComponent<WeaponScripts>().states);
-            //weaponpickup.transform.SetParent(tay);
-            Instantiate(weaponpickup, tay.transform.position, tay.rotation);
-            //weaponpickup.transform.localScale = Vector3.one;
-            //weaponpickup.transform.localPosition = Vector3.zero;
-            //weaponpickup.transform.localRotation = Quaternion.Euler(0, 90, 90);
-            weaponpickup.SetActive(true);
+            weaponpickup.transform.SetParent(tay);
+            weaponpickup.transform.localScale = Vector3.one;
+            weaponpickup.transform.localPosition = Vector3.zero;
+            weaponpickup.transform.localRotation = Quaternion.Euler(0, 90, 90);
         }
         if (Currentweapon == null)
         {
             Currentweapon = weaponpickup.GetComponent<WeaponScripts>().states;
+            weaponpickup.SetActive(true);
             
         }
 
@@ -119,9 +131,7 @@ public class Gun : MonoBehaviour
                     Currentweapon= weapon;
                     weapon.Weaponprefabs.SetActive(true);
                     break;
-                }
-              
-                   
+                }                               
             }
             // reset dan;
 
