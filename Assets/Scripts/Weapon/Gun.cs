@@ -49,6 +49,18 @@ public class Gun : MonoBehaviour
     {
         if (Currentweapon.shootMode == WeaponState.ShootMode.Hold)
         {
+            if (Input.GetMouseButton(0))
+            {
+                GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
+                Bullet bu = bullet.GetComponent<Bullet>();
+                Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                rb.AddForce(transform.forward * 10);
+                //shoot();
+                //bulet.flashFx.Play(); 
+                anim.SetBool("shotsigle", true);
+
+            }
+            else { anim.SetBool("shotsigle", false); }
 
 
 
@@ -56,6 +68,14 @@ public class Gun : MonoBehaviour
         else if (Currentweapon.shootMode == WeaponState.ShootMode.Click)
         {
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                shoot();
+                //bulet.flashFx.Play(); 
+                anim.SetBool("shotsigle", true);
+
+            }
+            else { anim.SetBool("shotsigle", false); }
 
         }
 
@@ -81,7 +101,9 @@ public class Gun : MonoBehaviour
         {
             changeWeapon();
         }
+
     }
+
     void shoot()
     {
         so_luong_dan_da_ban += 1;
