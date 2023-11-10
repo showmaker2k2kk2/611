@@ -28,7 +28,7 @@ public class WeaponScripts : MonoBehaviour
     {
         if(other.GetComponent<Gun>())
         {
-            if(other.GetComponent<Gun>().vu_khi_tren_tay.Count<2)
+            if(other.GetComponent<Gun>().vu_khi_tren_tay.Count<3)
             {
                 other.GetComponent<Gun>().AddWeapon(this.gameObject); //truy cập đến phươg thức thêm vũ khí của lớp Gun
             }    

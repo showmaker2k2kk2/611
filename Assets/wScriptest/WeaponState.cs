@@ -13,7 +13,7 @@ public class WeaponState// tạo ra 1 biến và cung cấp các biến này cho
         Hold
     }
 
-
+        
     public string Name;
     public ShootMode shootMode; 
     public int Dame;

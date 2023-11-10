@@ -1,22 +1,25 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[System.Serializable]
 
-public class Tgun : MonoBehaviour
+public class Tgun 
 {
-   
-    void Start()
+
+    public enum ShootMode
     {
-        
+        Click,
+        Hold
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    protected virtual void Shoot()
-    { 
 
-    }
+    public string Name;
+    public ShootMode shootMode;
+    public int Dame;
+    public int ScreenShakingForce;// ?? rung c?a màn hình
+    public float speedFire;
+    public int MagazineSize = 27;//kích th??c b?ng ??n, số l??ng đạn
+    public GameObject projectile;
+    public Transform Shootpoint;
+    public GameObject Weaponprefabs;
 }

@@ -9,7 +9,11 @@ public class Gun : MonoBehaviour
 
     public List<WeaponState> vu_khi_tren_tay;// chứa thông tin vũ khí mà người chơi cầm trên tay
     public Transform tay;// khi nhặt vũ khí thì dặt tay người chơi làm cha  của vũ khí, đặt vị trí của vũ khí là tay người chơi
-    
+    private int CurrentIndexGun = 0;
+
+
+
+
     int so_luong_dan_da_ban = 0;//được kiểm tra dựa trên số lương đạn của tuõng vũ khí        Weaponstate.  MagazineSize ,và đẻ nạp lại đạn khi về 0
     bool dangnapdan=false;
 
@@ -20,7 +24,7 @@ public class Gun : MonoBehaviour
 
 
     public Transform pointshoot;
-    public GameObject aduu;
+    //public GameObject aduu;
     public ParticleSystem fx;
     Bullet bulet;
 
@@ -40,63 +44,46 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
+        
         Currentweapon = null;
+        CurrentIndexGun = 0;
 
     }
-
-
     void Update()
     {
-        if (Currentweapon.shootMode == WeaponState.ShootMode.Hold)
+
+        if (Currentweapon != null)
         {
-            if (Input.GetMouseButton(0))
+            if (Currentweapon.shootMode == WeaponState.ShootMode.Hold)
             {
-                GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
-                Bullet bu = bullet.GetComponent<Bullet>();
-                Rigidbody rb = bullet.GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 10);
-                //shoot();
-                //bulet.flashFx.Play(); 
-                anim.SetBool("shotsigle", true);
+                if (Input.GetMouseButton(0))
+                {
+                    GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);                   
+                    Rigidbody rb = bullet.GetComponent<Rigidbody>();
+                    rb.AddForce(transform.forward * 10);
+                  
+                    //bulet.flashFx.Play(); 
+                    anim.SetBool("shotsigle", true);
+
+                }
+                else { anim.SetBool("shotsigle", false); }
 
             }
-            else { anim.SetBool("shotsigle", false); }
-
-
-
-        }
-        else if (Currentweapon.shootMode == WeaponState.ShootMode.Click)
-        {
-
-            if (Input.GetMouseButtonDown(0))
+            else if (Currentweapon.shootMode == WeaponState.ShootMode.Click)
             {
-                shoot();
-                //bulet.flashFx.Play(); 
-                anim.SetBool("shotsigle", true);
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    shoot();
+                    //bulet.flashFx.Play(); 
+                    anim.SetBool("shotsigle", true);
+
+                }
+                else { anim.SetBool("shotsigle", false); }
 
             }
-            else { anim.SetBool("shotsigle", false); }
-
         }
-
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            shoot();
-            //bulet.flashFx.Play(); 
-            anim.SetBool("shotsigle", true);
-
-        }
-        else { anim.SetBool("shotsigle", false); }
-
-
-
-
-        //if(so_luong_dan_da_ban>=Currentweapon.MagazineSize)
-        //{
-        //    dangnapdan = true;
-        //    StartCoroutine(napdan());
-        //}    
+    
         if (Input.GetKeyDown(KeyCode.E))
         {
             changeWeapon();
@@ -115,9 +102,9 @@ public class Gun : MonoBehaviour
         //bu.Adfore();
         Destroy(bullet, 4);
     }
-    public void AddWeapon(GameObject weaponpickup)
+     public  void AddWeapon(GameObject weaponpickup)
     {   
-        if(vu_khi_tren_tay.Count<2)
+        if(vu_khi_tren_tay.Count<3)
         {
             weaponpickup.SetActive(false);
             vu_khi_tren_tay.Add(weaponpickup.GetComponent<WeaponScripts>().states);
@@ -143,26 +130,24 @@ public class Gun : MonoBehaviour
     }
    public  void changeWeapon()
     {
-        if(vu_khi_tren_tay.Count>1) 
-        {
-            Currentweapon.Weaponprefabs.SetActive(false);
-            foreach(WeaponState weapon in vu_khi_tren_tay)
-            { 
-                if (Currentweapon != weapon)
-                {
-                    Currentweapon= weapon;
-                    weapon.Weaponprefabs.SetActive(true);
-                    break;
-                }                               
-            }
-            // reset dan;
 
+        if (vu_khi_tren_tay.Count > 1)
+        {
+
+            Currentweapon.Weaponprefabs.SetActive(false);
+
+            CurrentIndexGun = (CurrentIndexGun + 1) % vu_khi_tren_tay.Count;
+            Currentweapon = vu_khi_tren_tay[CurrentIndexGun];
+            Currentweapon.Weaponprefabs.SetActive(true);
+            
         }
-        else if(vu_khi_tren_tay.Count==1)
+        else if (vu_khi_tren_tay.Count == 1)
         {
             Currentweapon = vu_khi_tren_tay[0];
             Currentweapon.Weaponprefabs.SetActive(true);
         }
-       
+
     }
-}
+
+}    
+

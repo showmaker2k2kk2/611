@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tshot : Tgun
+public class Tshot : GubDad
 {    
     void Start()
     {
