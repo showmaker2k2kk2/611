@@ -11,6 +11,8 @@ public class Gun : MonoBehaviour
     public Transform tay;// khi nhặt vũ khí thì dặt tay người chơi làm cha  của vũ khí, đặt vị trí của vũ khí là tay người chơi
     private int CurrentIndexGun = 0;
 
+    public float fireRate = 0.1f; // Tần suất bắn (thời gian giữa các viên đạn)
+    private float nextFire = 0.0f;
 
 
 
@@ -56,13 +58,12 @@ public class Gun : MonoBehaviour
         {
             if (Currentweapon.shootMode == WeaponState.ShootMode.Hold)
             {
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0) && Time.time > nextFire)
+
                 {
-                    GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);                   
-                    Rigidbody rb = bullet.GetComponent<Rigidbody>();
-                    rb.AddForce(transform.forward * 10);
-                  
-                    //bulet.flashFx.Play(); 
+                    shootGattling();
+                    nextFire = Time.time + fireRate;
+                    
                     anim.SetBool("shotsigle", true);
 
                 }
@@ -74,6 +75,7 @@ public class Gun : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
+                    
                     shoot();
                     //bulet.flashFx.Play(); 
                     anim.SetBool("shotsigle", true);
@@ -102,6 +104,13 @@ public class Gun : MonoBehaviour
         //bu.Adfore();
         Destroy(bullet, 4);
     }
+    void  shootGattling()
+    {
+        GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);    
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * speed);
+        Destroy(bullet, 4);
+    }
      public  void AddWeapon(GameObject weaponpickup)
     {   
         if(vu_khi_tren_tay.Count<3)
@@ -120,7 +129,7 @@ public class Gun : MonoBehaviour
             
         }
 
-        
+       
     }       
     IEnumerator napdan()
     {
