@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
     public Transform tay;// khi nhặt vũ khí thì dặt tay người chơi làm cha  của vũ khí, đặt vị trí của vũ khí là tay người chơi
     private int CurrentIndexGun = 0;
 
-    public float fireRate = 0.1f; // Tần suất bắn (thời gian giữa các viên đạn)
+    public float fireRate = 0.01f; // Tần suất bắn (thời gian giữa các viên đạn)
     private float nextFire = 0.0f;
 
 
@@ -61,9 +61,10 @@ public class Gun : MonoBehaviour
                 if (Input.GetMouseButton(0) && Time.time > nextFire)
 
                 {
-                    shootGattling();
                     nextFire = Time.time + fireRate;
-                    
+                    //shootGattling();
+                    GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
+
                     anim.SetBool("shotsigle", true);
 
                 }
@@ -109,7 +110,7 @@ public class Gun : MonoBehaviour
         GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);    
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed);
-        Destroy(bullet, 4);
+        Destroy(bullet.gameObject, 1);
     }
      public  void AddWeapon(GameObject weaponpickup)
     {   

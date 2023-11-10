@@ -24,20 +24,21 @@ public class Bullet : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {   
+
+        rb.AddForce(transform.forward * moveSpeed);
+        //transform.Translate(transform.forward * moveSpeed);
 
     }
         
     private void OnTriggerEnter(Collider objectother)
     {
-      
-
+        
         ITakeDame dame = objectother.GetComponent<ITakeDame>();
         dame?.Takedame(Dame);
         Debug.Log(objectother.name);
-        Destroy(gameObject);
-        
+        Destroy(gameObject,1);
     }
+
     
 }

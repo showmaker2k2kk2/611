@@ -14,7 +14,7 @@ public class Tgattling :MonoBehaviour
     public ParticleSystem bullet;
 
     private bool isfire;
-    public float fireRate = 0.1f; // Tần suất bắn (thời gian giữa các viên đạn)
+    public float fireRate = 1f; // Tần suất bắn (thời gian giữa các viên đạn)
     private float nextFire = 0.0f; // Thời gian bắn lần tiếp theo
 
 
@@ -40,9 +40,6 @@ public class Tgattling :MonoBehaviour
        ParticleSystem bulet = Instantiate(bullet, pointshot.transform.position, transform.rotation);
         Rigidbody rigidbody = bulet.GetComponent<Rigidbody>();
         rigidbody.AddForce(transform.forward * speed);
-        Destroy(bulet, 1);
-       
-
-
+        Destroy(bulet.gameObject, 1);
     }    
 }
