@@ -33,6 +33,11 @@ public class Gun : MonoBehaviour
     public Transform pointshoot;
     //public GameObject aduu;
     public ParticleSystem fx;
+    //[SerializeField] private ParticleSystem Projectitle;
+    [SerializeField] private ParticleSystem smoke_Rocket;
+    [SerializeField] private ParticleSystem Fire_Rocket;
+
+
     Bullet bulet;
 
     Rigidbody rb;
@@ -83,9 +88,15 @@ public class Gun : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-
-                    GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
-                    //bulet.flashFx.Play(); 
+                    if(Currentweapon.Weapontype==WeaponState.weapontype.Bazoka)
+                    {
+                         smoke_Rocket.Play();
+                         Fire_Rocket.Play();
+                    }    
+                    GameObject bulletB = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
+                    //Rigidbody rb=bulletB.GetComponent<Rigidbody>();
+                    //rb.AddForce(transform.forward * 100);
+                     //Destroy(bulletB,2);
                     anim.SetBool("shotsigle", true);
 
                 }
@@ -98,7 +109,7 @@ public class Gun : MonoBehaviour
         {
             changeWeapon();
         }
-
+      
     }
 
     void shoot()

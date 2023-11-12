@@ -7,13 +7,22 @@ using UnityEngine.UI;
 [System.Serializable]
 public class WeaponState// tạo ra 1 biến và cung cấp các biến này cho các loại vũ khí mà cần dùn
 {
+
+    public enum weapontype
+    {
+       
+        Bazoka,
+        GattlingGun,
+        ShotGun
+    }
+
     public enum ShootMode
     {
         Click,
         Hold
     }
 
-        
+    public weapontype Weapontype;     
     public string Name;
     public ShootMode shootMode; 
     public int Dame;

@@ -10,6 +10,9 @@ public class Bullet : MonoBehaviour
     public float moveSpeed;
     public float destroyAffterTime = 5f;
 
+    [SerializeField] private ParticleSystem Hit;
+    //[SerializeField] private ParticleSystem Fire_Rocket;
+
     Rigidbody rb;
 
 
@@ -24,7 +27,7 @@ public class Bullet : MonoBehaviour
 
   
     void Update()
-    {   
+    {
 
         rb.AddForce(transform.forward * moveSpeed);
         //transform.Translate(transform.forward * moveSpeed);
@@ -37,8 +40,19 @@ public class Bullet : MonoBehaviour
         ITakeDame dame = objectother.GetComponent<ITakeDame>();
         dame?.Takedame(Dame);
         Debug.Log(objectother.name);
-        Destroy(gameObject,1);
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().isKinematic = true;
+        Hit.gameObject.SetActive(true);
+        Hit.Play();
+        //gameObject.SetActive(false);
+        Destroy(gameObject,0.6f);
+    }
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+       gameObject.SetActive(true);
     }
 
-    
+
 }
