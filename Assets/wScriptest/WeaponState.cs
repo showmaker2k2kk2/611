@@ -24,7 +24,10 @@ public class WeaponState// tạo ra 1 biến và cung cấp các biến này cho
     public Transform Shootpoint;
     public GameObject Weaponprefabs;
 
-   
+    //[SerializeField] public ParticleSystem Projectitle;
+    //[SerializeField] public ParticleSystem Hit;
+    //[SerializeField] public ParticleSystem Flash;
+
     //public Sprite ImageWeapon;
     //public AudioClip WeaponShotsound;
     //public AudioClip WeaponpickUpSound;

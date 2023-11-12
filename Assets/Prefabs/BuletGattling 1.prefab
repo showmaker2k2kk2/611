@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dame: 0
-  moveSpeed: 200
+  moveSpeed: 2000
   destroyAffterTime: 5
 --- !u!54 &2232298815980370583
 Rigidbody:

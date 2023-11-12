@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dame: 20
-  moveSpeed: 0
+  moveSpeed: 1000
   destroyAffterTime: 5
 --- !u!136 &-6360362664280065097
 CapsuleCollider:

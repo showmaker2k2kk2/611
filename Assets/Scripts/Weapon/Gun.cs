@@ -6,16 +6,21 @@ public class Gun : MonoBehaviour
 {
 
     private WeaponState Currentweapon=new WeaponState();
-
     public List<WeaponState> vu_khi_tren_tay;// chứa thông tin vũ khí mà người chơi cầm trên tay
-    public Transform tay;// khi nhặt vũ khí thì dặt tay người chơi làm cha  của vũ khí, đặt vị trí của vũ khí là tay người chơi
+    private Bullet bullet;
+
+
+
+
+
+
+    public float fireRate = 20f; // Tần suất bắn (thời gian giữa các viên đạn)
+    private float nextFire = 1f;
+    public float speed;
+
+
+
     private int CurrentIndexGun = 0;
-
-    public float fireRate = 0.01f; // Tần suất bắn (thời gian giữa các viên đạn)
-    private float nextFire = 0.0f;
-
-
-
     int so_luong_dan_da_ban = 0;//được kiểm tra dựa trên số lương đạn của tuõng vũ khí        Weaponstate.  MagazineSize ,và đẻ nạp lại đạn khi về 0
     bool dangnapdan=false;
 
@@ -24,7 +29,7 @@ public class Gun : MonoBehaviour
 
 
 
-
+    public Transform tay;// khi nhặt vũ khí thì dặt tay người chơi làm cha  của vũ khí, đặt vị trí của vũ khí là tay người chơi
     public Transform pointshoot;
     //public GameObject aduu;
     public ParticleSystem fx;
@@ -34,7 +39,6 @@ public class Gun : MonoBehaviour
     Animator anim;
 
 
-    public float speed;
 
 
     private void Awake()
@@ -61,6 +65,9 @@ public class Gun : MonoBehaviour
                 if (Input.GetMouseButton(0) && Time.time > nextFire)
 
                 {
+                  
+
+                    fx.Play();
                     nextFire = Time.time + fireRate;
                     //shootGattling();
                     GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
@@ -76,8 +83,8 @@ public class Gun : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    
-                    shoot();
+
+                    GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
                     //bulet.flashFx.Play(); 
                     anim.SetBool("shotsigle", true);
 

@@ -1143,7 +1143,7 @@ MonoBehaviour:
   speed: 2000
   soluongdan: 80
   pointshot: {fileID: 659581173}
-  bullet: {fileID: 198256679247887648}
+  bullet: {fileID: 0}
   fireRate: 0.1
 --- !u!1 &1982939550
 GameObject:
@@ -1269,65 +1269,60 @@ MonoBehaviour:
     projectile: {fileID: 6288104218743627449, guid: 990cdc2ccab42424ebfe93913ccdd554, type: 3}
     Shootpoint: {fileID: 659581173}
     Weaponprefabs: {fileID: 2037374135}
---- !u!198 &198256679247887648 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8129700793437259768, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
-  m_PrefabInstance: {fileID: 8219674782831033048}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &8219674782831033048
+--- !u!1001 &367612841754173166
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.043
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 5.96
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5.48
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8215178457125789246, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952600, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8221224681799713546, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+    - target: {fileID: 367612843128952604, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
       propertyPath: m_Name
-      value: Projectile Gattling
+      value: RocketBazoka
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2a3b7e5a11d2534408a9b6f8af0cfe58, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 2d236d27ec3265e41832f19be32f64af, type: 3}
