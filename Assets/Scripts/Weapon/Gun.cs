@@ -100,7 +100,7 @@ public class Gun : MonoBehaviour
                     GameObject bulletB = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
                     //Rigidbody rb=bulletB.GetComponent<Rigidbody>();
                     //rb.AddForce(transform.forward * 100);
-                     //Destroy(bulletB,2);
+                    Destroy(bulletB, 2);
                     anim.SetBool("shotsigle", true);
                     Currentweapon.Flash.Play();
 

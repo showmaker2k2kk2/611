@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     [Header("Configuration")]
     public float moveSpeed;
     public float destroyAffterTime = 5f;
+    public GameObject projectitleModel;
+
     bool danvacham;
 
     [SerializeField] private ParticleSystem Hit;
@@ -54,8 +56,10 @@ public class Bullet : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = true;
         //transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         //Hit.transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
+        projectitleModel.SetActive(false);
         Hit.gameObject.SetActive(true);
         Hit.Play();
+
         Destroy(gameObject,0.5f);
  
     }

@@ -64,9 +64,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153178e983634714db10624e4ee1f300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dame: 0
+  Dame: 100
   moveSpeed: 50
   destroyAffterTime: 5
+  projectitleModel: {fileID: 7120749044589606949}
   Hit: {fileID: 3200522026311678590}
 --- !u!136 &545145844974174732
 CapsuleCollider:

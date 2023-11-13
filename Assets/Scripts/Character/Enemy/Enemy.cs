@@ -22,6 +22,7 @@ public class Enemy : Emity, ITakeDame
     public Transform player;
     public Transform Target => GameManager.Intance.player.transform;
     public Transform[] destinationwaypoint;
+
     private int curentpoint;
     Animator anim;
 
@@ -29,7 +30,6 @@ public class Enemy : Emity, ITakeDame
     bool arride;
 
     public float rangedesti = 0.1f;
-
     private Vector3 diretionToTarget => Target.position - transform.position;
     private bool InAttacRange => diretionToTarget.sqrMagnitude <= attackrange * attackrange;
     bool isdeath = false;
@@ -64,6 +64,11 @@ public class Enemy : Emity, ITakeDame
             Movewaypoint();
 
         }
+        Vector3.Distance(player.transform.position, transform.position);
+        //if (Vector3.Distance(player.transform.position, transform.position)<1.5)
+        //{
+        //    AttackMeelee();
+        //}
     }
     public void Takedame(int dame)
     {
@@ -111,6 +116,10 @@ public class Enemy : Emity, ITakeDame
         anim.SetBool("walk", false);
         agent.isStopped = true;
 
+    }
+    //protected abstract void AttackMeelee();
+    protected virtual void Attack()
+    {
 
     }
 }

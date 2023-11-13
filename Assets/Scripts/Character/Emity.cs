@@ -29,8 +29,16 @@ public class Emity : MonoBehaviour// nhận dame,tan cong, animation ,die,agent
     {
         
     }
+    protected virtual void AttackMeelee()
+    {
 
-    
+    }
+    protected virtual void AttackGun()
+    {
 
-    
+    }
+
+
+
+
 }
