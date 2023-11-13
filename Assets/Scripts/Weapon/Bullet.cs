@@ -9,10 +9,12 @@ public class Bullet : MonoBehaviour
     [Header("Configuration")]
     public float moveSpeed;
     public float destroyAffterTime = 5f;
+    bool danvacham;
 
     [SerializeField] private ParticleSystem Hit;
-    //[SerializeField] private ParticleSystem Fire_Rocket;
+    //[SerializeField]public ParticleSystem Flash_Rocket;
 
+    Gun Gunn;
     Rigidbody rb;
 
 
@@ -22,13 +24,21 @@ public class Bullet : MonoBehaviour
     }
     void Start()
     {
-       
+       if(danvacham)
+        {
+            StartCoroutine(DestroyAfterDelay(1.0f));
+        }    
     }
 
   
     void Update()
     {
-
+ 
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    Flash_Rocket.gameObject.SetActive(true);
+        //    Flash_Rocket.Play();
+        //}    
         rb.AddForce(transform.forward * moveSpeed);
         //transform.Translate(transform.forward * moveSpeed);
 
@@ -36,16 +46,18 @@ public class Bullet : MonoBehaviour
         
     private void OnTriggerEnter(Collider objectother)
     {
-        
+        danvacham = true;
         ITakeDame dame = objectother.GetComponent<ITakeDame>();
         dame?.Takedame(Dame);
         Debug.Log(objectother.name);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().isKinematic = true;
+        //transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        //Hit.transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
         Hit.gameObject.SetActive(true);
         Hit.Play();
-        //gameObject.SetActive(false);
-        Destroy(gameObject,0.6f);
+        Destroy(gameObject,0.5f);
+ 
     }
     IEnumerator DestroyAfterDelay(float delay)
     {

@@ -70,12 +70,15 @@ public class Gun : MonoBehaviour
                 if (Input.GetMouseButton(0) && Time.time > nextFire)
 
                 {
-                  
 
-                    fx.Play();
+
+                    //fx.Play();
+
+                    Currentweapon.Flash.Play();
                     nextFire = Time.time + fireRate;
                     //shootGattling();
                     GameObject bullet = Instantiate(Currentweapon.projectile, Currentweapon.Shootpoint.transform.position, transform.rotation);
+                    Destroy(bullet,3);
 
                     anim.SetBool("shotsigle", true);
 
@@ -90,6 +93,7 @@ public class Gun : MonoBehaviour
                 {
                     if(Currentweapon.Weapontype==WeaponState.weapontype.Bazoka)
                     {
+                      
                          smoke_Rocket.Play();
                          Fire_Rocket.Play();
                     }    
@@ -98,6 +102,7 @@ public class Gun : MonoBehaviour
                     //rb.AddForce(transform.forward * 100);
                      //Destroy(bulletB,2);
                     anim.SetBool("shotsigle", true);
+                    Currentweapon.Flash.Play();
 
                 }
                 else { anim.SetBool("shotsigle", false); }
