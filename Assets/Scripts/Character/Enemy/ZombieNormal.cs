@@ -19,13 +19,13 @@ public class ZombieNormal : Enemy
     }
 
 
-    void Start()
-    {
-        
-    }
+       void Start()
+      {
+       
+      }
 
-    
-    void Update()
+
+ void Update()
     {
         
     }

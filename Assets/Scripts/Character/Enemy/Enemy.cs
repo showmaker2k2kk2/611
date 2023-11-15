@@ -19,7 +19,8 @@ public class Enemy : Emity, ITakeDame
 
     public NavMeshAgent AgentBody => this.TryGetMonoComponent(ref agent);
     bool animMove;
-    public Transform player;
+    //public Transform player;
+    public GameObject player;
     public Transform Target => GameManager.Intance.player.transform;
     public Transform[] destinationwaypoint;
 
@@ -31,9 +32,15 @@ public class Enemy : Emity, ITakeDame
 
     public float rangedesti = 0.1f;
     private Vector3 diretionToTarget => Target.position - transform.position;
-    private bool InAttacRange => diretionToTarget.sqrMagnitude <= attackrange * attackrange;
+    //private bool InAttacRange => diretionToTarget.sqrMagnitude <= attackrange * attackrange;
     bool isdeath = false;
+    bool moveWaypoint;
 
+
+
+    [SerializeField] LayerMask Player;
+    public float sightRange, canattackRange;
+    bool lookplayer, AttackRange;
 
 
 
@@ -47,8 +54,10 @@ public class Enemy : Emity, ITakeDame
         base.Start();
         currenthealth = indexEnemy.StartHealth;
         curentpoint = 0;
+        moveWaypoint = true;
 
 
+     
         //Movewaypoint();
 
     }
@@ -59,16 +68,38 @@ public class Enemy : Emity, ITakeDame
         if (isdeath)
             return;
 
-        if (!agent.pathPending && agent.remainingDistance < 0.1f)
+        if (!agent.pathPending && agent.remainingDistance < 0.1f && moveWaypoint)
         {
             Movewaypoint();
 
         }
-        Vector3.Distance(player.transform.position, transform.position);
-        //if (Vector3.Distance(player.transform.position, transform.position)<1.5)
+
+        //lookplayer = Physics.CheckSphere(transform.position, sightRange, Player);
+        //AttackRange = Physics.CheckSphere(transform.position, canattackRange, Player);
+        float Distantarget = Vector3.Distance(transform.position, player.transform.position);
+        if(Distantarget<=2)
+        {
+            agent.isStopped = true;
+            //moveWaypoint=false;
+            Attack();
+
+
+        }    
+        else
+        {
+        Lookplayer();
+
+        }    
+
+
+        // if(lookplayer)
         //{
-        //    AttackMeelee();
-        //}
+        //    targetPlayer();
+        //    anim.SetBool("Attack", false);
+        //}    
+      
+
+       
     }
     public void Takedame(int dame)
     {
@@ -78,7 +109,7 @@ public class Enemy : Emity, ITakeDame
             Death();
         }
     }
-    void Movewaypoint()
+    protected virtual void Movewaypoint()
     {
         isdeath = false;
         setDestination2(destinationwaypoint[curentpoint].position);
@@ -101,6 +132,7 @@ public class Enemy : Emity, ITakeDame
 
     public void setDestination2(Vector3 destination)
     {
+       
         agent.isStopped = false;
         anim.SetBool("walk", true);
         agent.SetDestination(destination);
@@ -121,5 +153,20 @@ public class Enemy : Emity, ITakeDame
     protected virtual void Attack()
     {
 
+        agent.isStopped = true;
+        anim.SetBool("walk", false);
+        anim.SetBool("Attack ", true);
+
+
     }
+    void Lookplayer()
+    {
+        agent.isStopped = false;
+        moveWaypoint = false;
+        agent.SetDestination(player.transform.position);
+        anim.SetBool("walk", true);
+        anim.SetBool("Attack ", false);
+    }
+    
+
 }
