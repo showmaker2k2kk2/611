@@ -19,7 +19,7 @@ public class Player : Emity
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         //animator.Initialized();
 

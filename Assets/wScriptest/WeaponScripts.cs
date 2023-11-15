@@ -5,8 +5,13 @@ using UnityEngine;
 public class WeaponScripts : MonoBehaviour
 {
    public WeaponState states;// mỗi khẩu súng sẽ có 1 trang thái riêng;
+    Rigidbody rb;
 
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Start()
     {

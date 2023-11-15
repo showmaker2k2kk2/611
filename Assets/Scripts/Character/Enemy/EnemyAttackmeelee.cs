@@ -25,9 +25,9 @@ public class EnemyAttackmeelee : Enemy
     {
         
     }
-    protected override void Attack()
-    {
-        anim.SetBool("walk", false);
-        agent.isStopped = true;
-    }
+    //protected override void Attack()
+    //{
+    //    anim.SetBool("walk", false);
+    //    agent.isStopped = true;
+    //}
 }
