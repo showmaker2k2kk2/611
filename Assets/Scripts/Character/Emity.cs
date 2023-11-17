@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public  class Emity : MonoBehaviour// nhận dame,tan cong, animation ,die,agent
 {
-    protected NavMeshAgent agent;
+    public NavMeshAgent agent;
     
    
 

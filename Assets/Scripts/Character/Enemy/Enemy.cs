@@ -15,7 +15,8 @@ public class Enemy : Emity, ITakeDame
     protected int attackrange;
 
 
-    public NavMeshAgent AgentBody => this.TryGetMonoComponent(ref agent);
+   //public NavMeshAgent AgentBody => this.TryGetMonoComponent(ref agent);
+
  
     public GameObject player;
     //public Transform Target => GameManager.Intance.player.transform;
@@ -60,11 +61,11 @@ public class Enemy : Emity, ITakeDame
         if (isdeath)
             return;
 
-        if (!agent.pathPending && agent.remainingDistance < 0.1f && moveWaypoint)
+        /*if (!agent.pathPending && agent.remainingDistance < 0.1f && moveWaypoint)
         {
             Movewaypoint();
 
-        }
+        }*/
 
         float Distantarget = Vector3.Distance(transform.position, player.transform.position);
         if(Distantarget<=2)
