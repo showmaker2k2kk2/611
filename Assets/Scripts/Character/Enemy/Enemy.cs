@@ -18,10 +18,10 @@ public class Enemy : Emity, ITakeDame
     public NavMeshAgent AgentBody => this.TryGetMonoComponent(ref agent);
  
     public GameObject player;
-    public Transform Target => GameManager.Intance.player.transform;
+    //public Transform Target => GameManager.Intance.player.transform;
     public Transform[] destinationwaypoint;
 
-    private int curentpoint;
+    protected int curentpoint;
     protected Animator anim;
 
     private Action den_noi;
@@ -29,7 +29,7 @@ public class Enemy : Emity, ITakeDame
 
     public float rangedesti = 0.1f;
     protected bool isdeath = false;
-    bool moveWaypoint;
+    protected bool moveWaypoint;
 
 
 
@@ -80,7 +80,7 @@ public class Enemy : Emity, ITakeDame
          
         
         Lookplayer();
-
+           
         }    
 
 
@@ -95,13 +95,12 @@ public class Enemy : Emity, ITakeDame
             Death();
         }
     }
-    protected virtual void Movewaypoint()
+    public void Movewaypoint()
     {
         isdeath = false;
         setDestination2(destinationwaypoint[curentpoint].position);
 
     }
-
 
     public void OnArride()
     {
@@ -116,9 +115,8 @@ public class Enemy : Emity, ITakeDame
         });
     }
 
-    public void setDestination2(Vector3 destination)
-    {
-       
+    protected void setDestination2(Vector3 destination)
+    {     
         agent.isStopped = false;
         anim.SetBool("walk", true);
         agent.SetDestination(destination);
@@ -130,30 +128,47 @@ public class Enemy : Emity, ITakeDame
     protected override void Death()
     {
         isdeath = true;
-        anim.SetTrigger("Dead");
-        anim.SetBool("walk", false);
+        anim.SetTrigger(AnimationName.Dead.ToString());
+        anim.SetBool(AnimationName.walk.ToString(), false);
         agent.isStopped = true;
 
     }
-    //protected abstract void AttackMeelee();
-    protected virtual void OnAttack()
+
+    protected void OnAttack()
     {
 
         agent.isStopped = true;
-        anim.SetBool("walk", false);
-        anim.SetBool("Attack", true);
-        
+        anim.SetBool(AnimationName.walk.ToString(), false);
+        anim.SetBool(AnimationName.Attack.ToString(), true);
+        Debug.Log("Attack");
 
     }
-    void Lookplayer()
-    {
+    protected void Lookplayer()
+  {
         agent.isStopped = false;
+        anim.SetBool(Gameconstanl.ANIMATION_WALK, true);
+        anim.SetBool(AnimationName.Attack.ToString(), false);
         moveWaypoint = false;
         agent.SetDestination(player.transform.position);
-        anim.SetBool("walk", true);
-        anim.SetBool("Attack ", false);
+        Debug.Log("Move");
+    }
+    public void Test()
+    {
+        Debug.Log("1655551");
     }
    
     
 
+}
+public enum AnimationName
+{
+    walk,
+    Attack,
+    Dead
+
+}
+public static class Gameconstanl
+{
+    public const string ANIMATION_WALK = "walk";
+    public const string ANIMATION_ATTACK = "Attack";
 }

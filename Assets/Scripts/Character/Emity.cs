@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Emity : MonoBehaviour// nhận dame,tan cong, animation ,die,agent
+public  class Emity : MonoBehaviour// nhận dame,tan cong, animation ,die,agent
 {
     protected NavMeshAgent agent;
     
@@ -24,11 +24,10 @@ public class Emity : MonoBehaviour// nhận dame,tan cong, animation ,die,agent
     {
         
     }
+
+    protected virtual void Death()
+    { }
     
-    protected virtual void Death() 
-    {
-        
-    }
     protected virtual void AttackMeelee()
     {
 

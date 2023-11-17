@@ -54,8 +54,6 @@ public class Bullet : MonoBehaviour
         Debug.Log(objectother.name);
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().isKinematic = true;
-        //transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-        //Hit.transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
         projectitleModel.SetActive(false);
         Hit.gameObject.SetActive(true);
         Hit.Play();

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EneemyGunOberridde
+  m_Controller: {fileID: 9100000, guid: 71e2145446c755c4c977c16b4f2134fe, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: db835f27ae8d7e14687d55e690a45a33, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: db835f27ae8d7e14687d55e690a45a33, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: a48e9564c70f36f4296cf4f4d12c3230, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: e02023771c3ec284c850b113b79298b8, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: a29e5529433f582438314866c8c007f4, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: eee9908608c6ebe4a8341690ca4ea5bd, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 63e2bb7e8e308e64db0929ba3c6d961d, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: d8ef2982c2a5c5746bd13d7db5b40dd9, type: 3}

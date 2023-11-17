@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartHealth: 100
   curentHealth: 0
-  speedstart: 0
-  AttackRange: 0
+  speedstart: 2
+  AttackRange: 2
   DameMeelee: 0
