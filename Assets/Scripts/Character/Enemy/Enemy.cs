@@ -13,9 +13,11 @@ public class Enemy : Emity, ITakeDame
     public int maxHealth = 100;
     public float speed;
     protected int attackrange;
+    int a = 2;
 
 
-   //public NavMeshAgent AgentBody => this.TryGetMonoComponent(ref agent);
+
+   public NavMeshAgent AgentBody => this.TryGetMonoComponent(ref agent);
 
  
     public GameObject player;
@@ -88,6 +90,10 @@ public class Enemy : Emity, ITakeDame
 
        
     }
+    public void Testso()
+    {
+        Debug.Log("so la " + a);
+    }    
     public void Takedame(int dame)
     {
         currenthealth -= dame;
@@ -125,7 +131,7 @@ public class Enemy : Emity, ITakeDame
         {
             OnArride();
         }
-    }
+    }   
     protected override void Death()
     {
         isdeath = true;
