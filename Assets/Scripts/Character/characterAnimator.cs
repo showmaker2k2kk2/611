@@ -10,13 +10,20 @@ public class characterAnimator : MonoBehaviour
     public enum Animation
     {
         walk,
+        Attack,
+        Dead,
+        idle
         
     }
-    private void Awake()
+    public Animator Ator
     {
-        anim= GetComponent<Animator>();
+        get
+        {
+            if (anim == null)
+                anim = GetComponent<Animator>();
+            return anim;
+        }
     }
-
     void Start()
     {
         

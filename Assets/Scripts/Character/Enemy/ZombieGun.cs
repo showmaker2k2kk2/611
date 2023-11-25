@@ -4,28 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class ZombieGun : MonoBehaviour
+public class ZombieGun : EnemyBrain
 {
-    private float angularSpeed = 100;
-    public float shootattack = 10;
-    protected Enemy enemy;
-    public GameObject player;
-    
-    public NavMeshAgent agent;
-    private Animator anim;
-
-    public Transform pointshot1;
-    public Transform pointshot2;
-    public GameObject buletEnemy;
-
-
-
-
+   
 
     protected void Awake()
     {
         agent= GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
+       
     }
     protected  void Start()
     {
@@ -37,64 +23,64 @@ public class ZombieGun : MonoBehaviour
     {
       
 
-            float Distanceshot = Vector3.Distance(player.transform.position, transform.position);
+        //    float Distanceshot = Vector3.Distance(player.transform.position, transform.position);
 
-        //    if (Distanceshot < shootattack)
-        //    {
-        //        Shoot(player.transform.position);
-        //    }
+        ////    if (Distanceshot < shootattack)
+        ////    {
+        ////        Shoot(player.transform.position);
+        ////    }
 
-        //    else 
+        ////    else 
+        ////{
+        ////    enemy.Movewaypoint()
+        ////}
+        ////enemy.Testso();
+        //if (Distanceshot <=5)
         //{
-        //    enemy.Movewaypoint()
+        //    Move(player.transform.position);
         //}
-        //enemy.Testso();
-        if (Distanceshot <=5)
-        {
-            Move(player.transform.position);
-        }
-        else
-        {
-            anim.SetBool(AnimationName.walk.ToString(), false);
-        }
+        //else
+        //{
+        //    anim.SetBool(AnimationName.walk.ToString(), false);
+        //}
    
 
     }
-        void Shoot(Vector3 target)
-        {
-            agent.isStopped = true;
-            Vector3 dir = target - transform.position;
-            anim.SetBool("Attack", true);
+        //void Shoot(Vector3 target)
+        //{
+        //    agent.isStopped = true;
+        //    Vector3 dir = target - transform.position;
+        //    anim.SetBool("Attack", true);
             
 
-        }
-    void Attackplayer()
-    {
-        GameObject BU = Instantiate(buletEnemy, pointshot1.transform.position, transform.rotation);
-        Rigidbody rbu = BU.GetComponent<Rigidbody>();
+        //}
+    //void Attackplayer()
+    //{
+    //    GameObject BU = Instantiate(buletEnemy, pointshot1.transform.position, transform.rotation);
+    //    Rigidbody rbu = BU.GetComponent<Rigidbody>();
 
-    }
+    //}
 
-    void Move(Vector3 target)
-    {
-        Rotationtarget(target);
-        agent.SetDestination(target);
-        anim.SetBool(AnimationName.walk.ToString(), true);
+    //void Move(Vector3 target)
+    //{
+    //    Rotationtarget(target);
+    //    agent.SetDestination(target);
+    //    anim.SetBool(AnimationName.walk.ToString(), true);
 
-    }
+    //}
 
-    public enum AnimationName
-    {
-        walk,   
-        Attack,
-        Dead
+    //public enum AnimationName
+    //{
+    //    walk,   
+    //    Attack,
+    //    Dead
 
-    }
-    public void Rotationtarget(Vector3 target)
-    {
-        Quaternion Dir = Quaternion.LookRotation(target);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Dir, angularSpeed );
+    //}
+    //public void Rotationtarget(Vector3 target)
+    //{
+    //    Quaternion Dir = Quaternion.LookRotation(target);
+    //    transform.rotation = Quaternion.Slerp(transform.rotation, Dir, angularSpeed );
 
-    }
+    //}
 }
 

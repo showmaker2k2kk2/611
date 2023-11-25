@@ -20,12 +20,14 @@ public class EnemyBrain : MonoBehaviour
 
     private void Awake()
     {
-        Onarride = OnArride;
-     
+      
+;
+
     }
     void Start()
     {
-
+        Onarride = OnArride;
+        agent = GetComponent<NavMeshAgent>();
     }
 
 
