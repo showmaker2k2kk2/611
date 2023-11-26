@@ -15,6 +15,11 @@ public class characterAnimator : MonoBehaviour
         idle
         
     }
+    public enum AttackType
+    {
+        shotGun,
+        Gattling
+    }    
     public Animator Ator
     {
         get
