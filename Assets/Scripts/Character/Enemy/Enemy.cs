@@ -27,7 +27,7 @@ public class Enemy : Emity, ITakeDame
     protected int curentpoint;
     protected Animator anim;
 
-    private Action den_noi;
+    //private Action den_noi;
     bool arride;
 
     public float rangedesti = 0.1f;
@@ -43,7 +43,7 @@ public class Enemy : Emity, ITakeDame
     protected void Awake()
     {
         anim = GetComponentInChildren<Animator>();
-        den_noi = OnArride;
+        //den_noi = OnArride;
     }
     protected override void Start()
     {
@@ -102,36 +102,36 @@ public class Enemy : Emity, ITakeDame
             Death();
         }
     }
-    public void Movewaypoint()
-    {
-        isdeath = false;
-        setDestination2(destinationwaypoint[curentpoint].position);
+    //public void Movewaypoint()
+    //{
+    //    isdeath = false;
+    //    setDestination2(destinationwaypoint[curentpoint].position);
 
-    }
+    //}
 
-    public void OnArride()
-    {
-        arride = true;
-        anim.SetBool("walk", false);
-        this.DelayCall(2, () =>
-        {
-            curentpoint++;
-            if (curentpoint >= destinationwaypoint.Length)
-                curentpoint = 0;
-            arride = false;
-        });
-    }
+    //public void OnArride()
+    //{
+    //    arride = true;
+    //    anim.SetBool("walk", false);
+    //    this.DelayCall(2, () =>
+    //    {
+    //        curentpoint++;
+    //        if (curentpoint >= destinationwaypoint.Length)
+    //            curentpoint = 0;
+    //        arride = false;
+    //    });
+    //}
 
-    protected void setDestination2(Vector3 destination)
-    {     
-        agent.isStopped = false;
-        anim.SetBool("walk", true);
-        agent.SetDestination(destination);
-        if (Vector3.Distance(transform.position, destination) <= AgentBody.radius)
-        {
-            OnArride();
-        }
-    }   
+    //protected void setDestination2(Vector3 destination)
+    //{     
+    //    agent.isStopped = false;
+    //    anim.SetBool("walk", true);
+    //    agent.SetDestination(destination);
+    //    if (Vector3.Distance(transform.position, destination) <= AgentBody.radius)
+    //    {
+    //        OnArride();
+    //    }
+    //}   
     protected override void Death()
     {
         isdeath = true;
