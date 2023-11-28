@@ -9,7 +9,7 @@ public class characterAnimator : MonoBehaviour
     Animator anim;
     public enum AnimationState { Movement, Attack}
     public enum Movementype { idle,walk}
-    public enum Attacktype { Shotgun, Gattling , Bazoka}
+    public enum Attacktype { Shotgun, Gattling , Bazoka, Mele }
 
 
     public AnimationState CurrentAnimation;

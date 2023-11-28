@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyRun : EnemyBrain
 {
-    
+    characterAnimator chaAnimator;
+    protected override Player targetAttack => GameManager.Intance.player;// khi khoir taoj chir chayj 1 cai
+
+
     void Start()
     {
 
@@ -17,8 +20,11 @@ public class EnemyRun : EnemyBrain
     {
         
     }
-    public override void Attack(GameObject targe)
+    public override void Attack()
     {
+        agent.isStopped = true;
+        chaAnimator.SetAttack(characterAnimator.Attacktype.Mele);
+
 
     }    
 }

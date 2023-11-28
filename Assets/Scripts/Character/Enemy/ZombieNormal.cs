@@ -6,8 +6,8 @@ using UnityEngine.AI;
 
 public class ZombieNormal : EnemyBrain
 {
-  
 
+    protected override Player targetAttack => GameManager.Intance.player;// khi khoir taoj chir chayj 1 cai
     private void Awake()
     {
        
@@ -26,6 +26,9 @@ public class ZombieNormal : EnemyBrain
     {
         
     }
-    
+   public override void Attack()
+    {
+
+    }
 
 }
