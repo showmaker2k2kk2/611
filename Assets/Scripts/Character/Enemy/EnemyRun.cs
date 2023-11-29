@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyRun : EnemyBrain
+public class EnemyRun : EnemyBrain 
 {
     characterAnimator chaAnimator;
-    protected override Player targetAttack => GameManager.Intance.player;// khi khoir taoj chir chayj 1 cai
+    //protected override Player targetAttack => GameManager.Intance.player;// khi khoir taoj chir chayj 1 cai
 
 
     void Start()
@@ -20,7 +20,7 @@ public class EnemyRun : EnemyBrain
     {
         
     }
-    public override void Attack()
+    protected override void Attack()
     {
         agent.isStopped = true;
         chaAnimator.SetAttack(characterAnimator.Attacktype.Mele);

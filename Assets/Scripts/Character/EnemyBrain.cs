@@ -11,10 +11,18 @@ public abstract class EnemyBrain : MonoBehaviour
     public Transform[] destinationwaypoint;
     public Action arride2 = null;
     private int currentpoint;
-    private int angularSpeed;
     public int attackRange;
 
-    protected abstract Player targetAttack { get; }
+
+    private int angularSpeed=10;
+    public float speed;
+
+
+    bool folllowerplayer=false;
+
+
+    protected Player targetAttack => GameManager.Intance.player;
+
 
     protected Action Onarride;
 
@@ -32,29 +40,44 @@ public abstract class EnemyBrain : MonoBehaviour
    
         agent = GetComponent<NavMeshAgent>();
         arride2 = OnArride;
+        MoveWaypoint();
     }
 
 
-    void Update()
+  protected virtual  void Update()
     {
-     
-            if(Vector3.Distance(transform.position,targetAttack.transform.position)<=attackRange)
+        float dirtotarget = Vector3.Distance(transform.position, targetAttack.transform.position);
+       
+        if(dirtotarget<=10)
         {
-            agent.isStopped = true;
-            Attack();
+            folllowerplayer=true;
+            //Attack();
+            //agent.isStopped = true;
+            rotationtotarget(targetAttack);
             return;
-
         }
-    }
- 
-    public virtual void Attack()
-    {
+        if(folllowerplayer&&dirtotarget >= 7)
+        {
+            followPlayer();
+        }
 
+     
+            //if (Vector3.Distance(transform.position,targetAttack.transform.position)<=attackRange)
+        //{
+        //    agent.isStopped = true;
+        //    Attack();
+        //    return;
+
+        //}
     }
-    //public void MoveWaypoint()
-    //{
-    //    setDestination2(destinationwaypoint[currentpoint].position);
-    //}
+
+    protected abstract void Attack();
+   
+    public void MoveWaypoint()
+    {
+        folllowerplayer = false;
+        setDestination2(destinationwaypoint[currentpoint].position);
+    }
     protected void setDestination2(Vector3 destination)
     {
         agent.isStopped = false;
@@ -79,14 +102,31 @@ public abstract class EnemyBrain : MonoBehaviour
 
         });
     }
-    public void RotateToDirection(Vector3 direction)  // xoay
+    //public void RotateToDirection(Vector3 direction)  // xoay
+    //{
+    //    Quaternion targetQuaternion = Quaternion.LookRotation(direction, Vector3.up);
+    //    transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, angularSpeed * Time.deltaTime);
+    //}
+
+
+    void rotationtotarget(Player target)
     {
-        Quaternion targetQuaternion = Quaternion.LookRotation(direction, Vector3.up);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, angularSpeed * Time.deltaTime);
+        Vector3 dir = (target.transform.position - transform.position).normalized;
+        Quaternion huong = Quaternion.LookRotation(dir, Vector3.up);
+        transform.rotation = Quaternion.Lerp(transform.rotation, huong, agent.angularSpeed * Time.deltaTime);
     }
+    
+    void followPlayer()
+    {
+     
+        agent.isStopped=false;
+        if (targetAttack != null)
+        {
 
+            transform.position = Vector3.MoveTowards(transform.position, targetAttack.transform.position, speed * Time.deltaTime);
 
-
-
-
-}
+        }
+    }
+  
+    
+    }

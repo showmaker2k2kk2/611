@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public Player player;
     public static GameManager Intance;
+    private void Awake()
+    {
+        if (!Intance)
+            Intance = this;
+    }
 
     void Start()
     {
@@ -16,7 +21,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Intance = null)
-            Intance = this;
+        
     }
 }

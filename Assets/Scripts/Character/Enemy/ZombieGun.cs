@@ -6,7 +6,13 @@ using UnityEngine.AI;
 
 public class ZombieGun : EnemyBrain
 {
-   
+    protected override void Attack()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    //protected override Player targetAttack => GameManager.Intance.player;
+
 
     protected void Awake()
     {
@@ -46,14 +52,14 @@ public class ZombieGun : EnemyBrain
    
 
     }
-        //void Shoot(Vector3 target)
-        //{
-        //    agent.isStopped = true;
-        //    Vector3 dir = target - transform.position;
-        //    anim.SetBool("Attack", true);
-            
+    //void Shoot(Vector3 target)
+    //{
+    //    agent.isStopped = true;
+    //    Vector3 dir = target - transform.position;
+    //    anim.SetBool("Attack", true);
 
-        //}
+
+    //}
     //void Attackplayer()
     //{
     //    GameObject BU = Instantiate(buletEnemy, pointshot1.transform.position, transform.rotation);
@@ -82,5 +88,7 @@ public class ZombieGun : EnemyBrain
     //    transform.rotation = Quaternion.Slerp(transform.rotation, Dir, angularSpeed );
 
     //}
+  
+
 }
 
