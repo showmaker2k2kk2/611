@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAnimator : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     void Start()
     {
         

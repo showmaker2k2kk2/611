@@ -120,13 +120,9 @@ public abstract class EnemyBrain : MonoBehaviour
     {
      
         agent.isStopped=false;
-        if (targetAttack != null)
-        {
-
-            transform.position = Vector3.MoveTowards(transform.position, targetAttack.transform.position, speed * Time.deltaTime);
-
-        }
+        agent.SetDestination(targetAttack.transform.position);
     }
+
   
     
     }

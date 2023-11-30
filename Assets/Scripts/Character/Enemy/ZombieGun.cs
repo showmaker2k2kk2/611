@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class ZombieGun : EnemyBrain
 {
+
+
     protected override void Attack()
     {
         throw new System.NotImplementedException();
