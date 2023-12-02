@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,6 +56,12 @@ public class Player : Emity
            
         //}    
     }
+
+    internal void Takedame(int v)
+    {
+        throw new NotImplementedException();
+    }
+
     void MoveInput(Vector3 dirMove)
     {
         agent.Move(dirMove * speed * Time.deltaTime);

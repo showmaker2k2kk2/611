@@ -16,8 +16,7 @@ public class Enemy : Emity, ITakeDame
     int a = 2;
 
 
-
-   public NavMeshAgent AgentBody => this.TryGetMonoComponent(ref agent);
+    public NavMeshAgent AgentBody => this.TryGetMonoComponent(ref agent);
 
  
     public GameObject player;
