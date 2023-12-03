@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +12,17 @@ public abstract class EnemyBrain : MonoBehaviour
     public Action arride2 = null;
     private int currentpoint;
     public int attackRange;
+    Animator anim;
+
+
+    bool tamnhin;
+    bool phamvitancong;
+    [SerializeField]float phamvinhin;
+    [SerializeField] float tamvitancong;
+
+
+    public LayerMask playerMaskt;
+        
 
 
     private int angularSpeed=10;
@@ -32,7 +43,7 @@ public abstract class EnemyBrain : MonoBehaviour
     private void Awake()
     {
       
-;
+;  anim = GetComponent<Animator>();
 
     }
     void Start()
@@ -46,29 +57,37 @@ public abstract class EnemyBrain : MonoBehaviour
 
   protected virtual  void Update()
     {
-        float dirtotarget = Vector3.Distance(transform.position, targetAttack.transform.position);
-       
-        if(dirtotarget<=10)
-        {
-            folllowerplayer=true;
-            //Attack();
-            //agent.isStopped = true;
-            rotationtotarget(targetAttack);
-            return;
-        }
-        if(folllowerplayer&&dirtotarget >= 7)
-        {
-            followPlayer();
-        }
 
-     
+        tamnhin = Physics.CheckSphere(transform.position, phamvinhin, playerMaskt);
+        phamvitancong = Physics.CheckSphere(transform.position, tamvitancong, playerMaskt);
+
+        if (!tamnhin && !phamvitancong) MoveWaypoint();
+        if (tamnhin && !phamvitancong) followPlayer();
+        if (tamnhin && phamvitancong) Attack();
+
+        //float dirtotarget = Vector3.Distance(transform.position, targetAttack.transform.position);
+
+            //if(dirtotarget<=10)
+            //{
+            //    folllowerplayer=true;
+            //    //Attack();
+            //    //agent.isStopped = true;
+            //    rotationtotarget(targetAttack);
+            //    return;
+            //}
+            //if(folllowerplayer&&dirtotarget >= 7)
+            //{
+            //    followPlayer();
+            //}
+
+
             //if (Vector3.Distance(transform.position,targetAttack.transform.position)<=attackRange)
-        //{
-        //    agent.isStopped = true;
-        //    Attack();
-        //    return;
+            //{
+            //    agent.isStopped = true;
+            //    Attack();
+            //    return;
 
-        //}
+            //}
     }
 
     protected abstract void Attack();
@@ -121,6 +140,10 @@ public abstract class EnemyBrain : MonoBehaviour
      
         agent.isStopped=false;
         agent.SetDestination(targetAttack.transform.position);
+        
+
+
+
     }
 
   

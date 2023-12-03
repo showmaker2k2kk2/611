@@ -8,9 +8,25 @@ public class ZombieGun : EnemyBrain
 {
 
 
+    public GameObject projectilenemyGun;
+    public Transform Point;
+    Animator anim;
+
+
+ 
+
+
     protected override void Attack()
     {
-        throw new System.NotImplementedException();
+        anim.SetBool("Attack", true);
+
+        GameObject bullet = Instantiate(projectilenemyGun, Point.transform.position, transform.rotation);
+        Bullet bu = bullet.GetComponent<Bullet>();
+     
+        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        rb.AddForce(transform.forward * speed);
+        //bu.Adfore();
+        Destroy(bullet, 4);
     }
 
     //protected override Player targetAttack => GameManager.Intance.player;
@@ -19,7 +35,7 @@ public class ZombieGun : EnemyBrain
     protected void Awake()
     {
         agent= GetComponent<NavMeshAgent>();
-       
+        anim = GetComponent<Animator>();
     }
     protected  void Start()
     {

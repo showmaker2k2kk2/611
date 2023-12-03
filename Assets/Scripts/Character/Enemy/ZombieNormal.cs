@@ -11,9 +11,7 @@ public class ZombieNormal : EnemyBrain, ITakeDame
     BoxCollider box;
     public LayerMask playerMast;
     public Transform CheckPoint;
-    //[SerializeField] private float distanceFromPlayer=Vector3.Distance(Transform.po);
-    //private Player player => GameManager.Intance.player;
-
+    
 
 
 
