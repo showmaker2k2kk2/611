@@ -8,7 +8,7 @@ public class ZombieGun : EnemyBrain
 {
 
    
-    public GameObject projectilenemyGun;
+    public GameObject projectilenemyGun;    
     public Transform Point;
     Animator anim;
 
@@ -46,13 +46,16 @@ public class ZombieGun : EnemyBrain
     protected override void Update()
     {
 
-        base.Update();
-        //    float Distanceshot = Vector3.Distance(player.transform.position, transform.position);
+        //base.Update();
+        float Distanceshot = Vector3.Distance(targetAttack.transform.position, transform.position);
 
-        ////    if (Distanceshot < shootattack)
-        ////    {
-        ////        Shoot(player.transform.position);
-        ////    }
+        if (Distanceshot < 15)
+        {
+            rotationtotarget(targetAttack);
+           
+            Attack();
+          
+        }
 
         ////    else 
         ////{
@@ -67,7 +70,7 @@ public class ZombieGun : EnemyBrain
         //{
         //    anim.SetBool(AnimationName.walk.ToString(), false);
         //}
-   
+
 
     }
     //void Shoot(Vector3 target)
@@ -106,7 +109,7 @@ public class ZombieGun : EnemyBrain
     //    transform.rotation = Quaternion.Slerp(transform.rotation, Dir, angularSpeed );
 
     //}
-  
+
 
 }
 

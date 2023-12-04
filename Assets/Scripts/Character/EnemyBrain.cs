@@ -30,7 +30,7 @@ public abstract class EnemyBrain : MonoBehaviour
         
 
 
-    private int angularSpeed=10;
+    [SerializeField]protected int angularSpeed;
     public float speed;
 
 
@@ -62,42 +62,43 @@ public abstract class EnemyBrain : MonoBehaviour
 
   protected virtual  void Update()
     {
+      
 
-        tamnhin = Physics.CheckSphere(transform.position, phamvinhin, playerMaskt);
-        phamvitancong = Physics.CheckSphere(transform.position, tamvitancong, playerMaskt);
+        //tamnhin = Physics.CheckSphere(transform.position, phamvinhin, playerMaskt);
+        //phamvitancong = Physics.CheckSphere(transform.position, tamvitancong, playerMaskt);
 
-        if (!tamnhin && !phamvitancong)
-        {
-            MoveWaypoint();
-                return;
-        }
-        
-        if (tamnhin && !phamvitancong) followPlayer();
-        if (tamnhin && phamvitancong) Attack();
+        //if (!tamnhin && !phamvitancong)
+        //{
+        //    MoveWaypoint();
+        //        return;
+        //}
+
+        //if (tamnhin && !phamvitancong) followPlayer();
+        //if (tamnhin && phamvitancong) Attack();
 
         //float dirtotarget = Vector3.Distance(transform.position, targetAttack.transform.position);
 
-            //if(dirtotarget<=10)
-            //{
-            //    folllowerplayer=true;
-            //    //Attack();
-            //    //agent.isStopped = true;
-            //    rotationtotarget(targetAttack);
-            //    return;
-            //}
-            //if(folllowerplayer&&dirtotarget >= 7)
-            //{
-            //    followPlayer();
-            //}
+        //if(dirtotarget<=10)
+        //{
+        //    folllowerplayer=true;
+        //    //Attack();
+        //    //agent.isStopped = true;
+        //    rotationtotarget(targetAttack);
+        //    return;
+        //}
+        //if(folllowerplayer&&dirtotarget >= 7)
+        //{
+        //    followPlayer();
+        //}
 
 
-            //if (Vector3.Distance(transform.position,targetAttack.transform.position)<=attackRange)
-            //{
-            //    agent.isStopped = true;
-            //    Attack();
-            //    return;
+        //if (Vector3.Distance(transform.position,targetAttack.transform.position)<=attackRange)
+        //{
+        //    agent.isStopped = true;
+        //    Attack();
+        //    return;
 
-            //}
+        //}
     }
 
     protected abstract void Attack();
@@ -138,11 +139,12 @@ public abstract class EnemyBrain : MonoBehaviour
     //}
 
 
-    void rotationtotarget(Player target)
+   protected  void rotationtotarget(Player target)
     {
         Vector3 dir = (target.transform.position - transform.position).normalized;
         Quaternion huong = Quaternion.LookRotation(dir, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, huong, agent.angularSpeed * Time.deltaTime);
+        Debug.Log("aaa");
     }
     
     void followPlayer()
