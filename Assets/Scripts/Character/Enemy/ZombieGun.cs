@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class ZombieGun : EnemyBrain
 {
 
-
+   
     public GameObject projectilenemyGun;
     public Transform Point;
     Animator anim;
@@ -43,10 +43,10 @@ public class ZombieGun : EnemyBrain
     }
 
 
-    protected  void Update()
+    protected override void Update()
     {
-      
 
+        base.Update();
         //    float Distanceshot = Vector3.Distance(player.transform.position, transform.position);
 
         ////    if (Distanceshot < shootattack)

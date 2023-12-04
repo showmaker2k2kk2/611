@@ -8,9 +8,14 @@ public abstract class EnemyBrain : MonoBehaviour
 {
     private bool arride;
     public NavMeshAgent agent;
-    public Transform[] destinationwaypoint;
+
+
+    
+    [SerializeField]protected  Transform[] destinationwaypoint;
+    [SerializeField]protected int currentpoint;
+
+
     public Action arride2 = null;
-    private int currentpoint;
     public int attackRange;
     Animator anim;
 
@@ -51,7 +56,7 @@ public abstract class EnemyBrain : MonoBehaviour
    
         agent = GetComponent<NavMeshAgent>();
         arride2 = OnArride;
-        MoveWaypoint();
+        //MoveWaypoint();
     }
 
 
@@ -61,7 +66,12 @@ public abstract class EnemyBrain : MonoBehaviour
         tamnhin = Physics.CheckSphere(transform.position, phamvinhin, playerMaskt);
         phamvitancong = Physics.CheckSphere(transform.position, tamvitancong, playerMaskt);
 
-        if (!tamnhin && !phamvitancong) MoveWaypoint();
+        if (!tamnhin && !phamvitancong)
+        {
+            MoveWaypoint();
+                return;
+        }
+        
         if (tamnhin && !phamvitancong) followPlayer();
         if (tamnhin && phamvitancong) Attack();
 
@@ -95,7 +105,7 @@ public abstract class EnemyBrain : MonoBehaviour
     public void MoveWaypoint()
     {
         folllowerplayer = false;
-        setDestination2(destinationwaypoint[currentpoint].position);
+        setDestination2(destinationwaypoint[currentpoint].position);     
     }
     protected void setDestination2(Vector3 destination)
     {
@@ -104,7 +114,7 @@ public abstract class EnemyBrain : MonoBehaviour
         agent.SetDestination(destination);
         if (Vector3.Distance(transform.position, destination) <= agent.radius)
         {
-            arride2?.Invoke();
+          arride2?.Invoke();
             //OnArride();
         }
     }
@@ -137,13 +147,10 @@ public abstract class EnemyBrain : MonoBehaviour
     
     void followPlayer()
     {
-     
+
         agent.isStopped=false;
         agent.SetDestination(targetAttack.transform.position);
-        
-
-
-
+      
     }
 
   

@@ -9,8 +9,8 @@ public class ZombieNormal : EnemyBrain, ITakeDame
 
     Animator Anim;
     BoxCollider box;
-    public LayerMask playerMast;
-    public Transform CheckPoint;
+
+    //public Transform CheckPoint;
     
 
 
