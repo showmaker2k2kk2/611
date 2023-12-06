@@ -62,7 +62,8 @@ public abstract class EnemyBrain : MonoBehaviour
 
   protected virtual  void Update()
     {
-      
+        float khoangcachdung = Vector3.Distance(transform.position, targetAttack.transform.position);
+        float khoangcachbancuaenemy = Vector3.Distance(transform.position, targetAttack.transform.position);
 
         //tamnhin = Physics.CheckSphere(transform.position, phamvinhin, playerMaskt);
         //phamvitancong = Physics.CheckSphere(transform.position, tamvitancong, playerMaskt);
