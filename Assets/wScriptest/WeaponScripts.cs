@@ -38,6 +38,7 @@ public class WeaponScripts : MonoBehaviour
                 other.GetComponent<Gun>().AddWeapon(this.gameObject); //truy cập đến phươg thức thêm vũ khí của lớp Gun
             }    
         }
+        Debug.Log("2aa");
         
     }
 

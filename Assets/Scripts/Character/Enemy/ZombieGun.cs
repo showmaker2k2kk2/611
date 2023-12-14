@@ -11,6 +11,8 @@ public class ZombieGun : EnemyBrain
     public GameObject projectilenemyGun;    
     public Transform Point;
     Animator anim;
+    float Timecount ;
+    [SerializeField] float timebetweenattacks = 3;
 
 
  
@@ -21,13 +23,17 @@ public class ZombieGun : EnemyBrain
         anim.SetBool("Attack", true);
 
         GameObject bullet = Instantiate(projectilenemyGun, Point.transform.position, transform.rotation);
-        Bullet bu = bullet.GetComponent<Bullet>();
-     
+        //Bullet bu = bullet.GetComponent<Bullet>();
+        //buletEnemy buu= bullet.GetComponent<buletEnemy>();
+
+
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * speed);
         //bu.Adfore();
-        Destroy(bullet, 4);
+        //Destroy(bullet, 4);
+      
     }
+
 
     //protected override Player targetAttack => GameManager.Intance.player;
 
@@ -45,15 +51,16 @@ public class ZombieGun : EnemyBrain
 
     protected override void Update()
     {
-
+        Timecount += Time.deltaTime;
         //base.Update();
         float Distanceshot = Vector3.Distance(targetAttack.transform.position, transform.position);
 
-        if (Distanceshot < 15)
+        if (Distanceshot < 15 && Timecount>timebetweenattacks)
         {
             rotationtotarget(targetAttack);
            
             Attack();
+            Timecount = 0;
           
         }
 

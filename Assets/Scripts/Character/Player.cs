@@ -20,7 +20,7 @@ public class Player : Emity
 
     private void Awake()
     {
-        //rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         //animator.Initialized();
 
@@ -70,11 +70,13 @@ public class Player : Emity
         void LookMouse()
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
                 transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
             }
         }
   
+
 }
