@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class EnemyBrain : MonoBehaviour
-{
+{ 
     private bool arride;
     public NavMeshAgent agent;
 
