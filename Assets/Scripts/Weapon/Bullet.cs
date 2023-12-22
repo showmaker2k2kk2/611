@@ -59,6 +59,11 @@ public class Bullet : MonoBehaviour
         Hit.Play();
 
         Destroy(gameObject,0.5f);
+        if(objectother.CompareTag("Boss"))
+        {
+
+        }
+
  
     }
     IEnumerator DestroyAfterDelay(float delay)
