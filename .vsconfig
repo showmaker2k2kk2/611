@@ -4,3 +4,12 @@
     "Microsoft.VisualStudio.Workload.ManagedGame"
   ]
 }
+
+
+$ git config http.version HTTP/1.1
+
+
+$ git config http.postBuffer 524288000
+
+
+$ git config http.version HTTP/2
