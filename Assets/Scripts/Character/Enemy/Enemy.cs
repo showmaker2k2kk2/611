@@ -146,7 +146,7 @@ public class Enemy : Emity, ITakeDame
         agent.isStopped = true;
         anim.SetBool(AnimationName.walk.ToString(), false);
         anim.SetBool(AnimationName.Attack.ToString(), true);
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
 
     }
     protected void Lookplayer()
@@ -156,7 +156,7 @@ public class Enemy : Emity, ITakeDame
         anim.SetBool(AnimationName.Attack.ToString(), false);
         moveWaypoint = false;
         agent.SetDestination(player.transform.position);
-        Debug.Log("Move");
+        //Debug.Log("Move");
     }
     public void Test()
     {

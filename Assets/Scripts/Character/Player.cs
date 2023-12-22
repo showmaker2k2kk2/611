@@ -15,8 +15,10 @@ public class Player : Emity
     public PlayerState chi_so_so_player;
 
 
-    Rigidbody rb;
+    Rigidbody rb;   
     Animator anim;
+    [SerializeField] float jumpForce;
+
 
     private void Awake()
     {
@@ -35,26 +37,40 @@ public class Player : Emity
 
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        Vector3 dir = new Vector3(horizontal, 0, vertical);
-        LookMouse();
-        if (dir != Vector3.zero)
-        {
-            anim.SetBool("Run", true);
-            //animator.SetMovement(characterAnimator.Movementtype.Run);
-            //Debug.LogError("AAA");
-            MoveInput(dir);
-        }
-        else
-        {
-            //animator.SetMovement(characterAnimator.Movementtype.idle);
-            anim.SetBool("Run", false);
-        }    
-        //if(Input.GetKeyDown(KeyCode.Space))
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * speed * Time.deltaTime;
+        rb.MovePosition(transform.position + movement);
+            
+        //if (Input.GetButtonDown("Jump"))
         //{
-           
-        //}    
+        //    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        //}
+
+
+        //float horizontal = Input.GetAxis("Horizontal");
+        //float vertical = Input.GetAxis("Vertical");
+        //Vector3 dir = new Vector3(horizontal, 0, vertical);
+        //LookMouse();
+        //if (dir != Vector3.zero)
+        //{
+        //    anim.SetBool("Run", true);
+        //    //animator.SetMovement(characterAnimator.Movementtype.Run);
+        //    //Debug.LogError("AAA");
+        //    MoveInput(dir);
+
+        //}
+        //else
+        //{
+        //    //animator.SetMovement(characterAnimator.Movementtype.idle);
+        //    anim.SetBool("Run", false);
+        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     internal void Takedame(int v)
@@ -65,6 +81,7 @@ public class Player : Emity
     void MoveInput(Vector3 dirMove)
     {
         agent.Move(dirMove * speed * Time.deltaTime);
+       
     }
    
         void LookMouse()
