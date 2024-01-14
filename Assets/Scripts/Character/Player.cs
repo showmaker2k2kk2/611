@@ -20,11 +20,15 @@ public class Player : Emity
     [SerializeField] float jumpForce;
 
 
+   
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         //animator.Initialized();
+       
 
     }
     protected override void Start()
@@ -41,9 +45,15 @@ public class Player : Emity
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * speed * Time.deltaTime;
-        rb.MovePosition(transform.position + movement);
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput);
+        transform.Translate(movement * speed * Time.deltaTime);
+        //rb.MovePosition(transform.position + movement);
             
+        
+        
+        
+        
+        
         //if (Input.GetButtonDown("Jump"))
         //{
         //    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -67,10 +77,10 @@ public class Player : Emity
         //    //animator.SetMovement(characterAnimator.Movementtype.idle);
         //    anim.SetBool("Run", false);
         //}
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        //}
     }
 
     internal void Takedame(int v)
